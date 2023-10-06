@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png" />
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  <title>Forgot Password - Learnet</title>
+</head>
+
+<body>
+  <div class="log-container">
+    <div class="log-img">
+      <img src="{% static 'img/logo.png' %}" alt="Learnet Company Logo" />
+    </div>
+    <div class="log">
+      <div class="forgot-pass">
+        <div>
+          <form method="post">
+            {% csrf_token %}
+            <div>
+              <input type="email" name="email" id="email" placeholder="Enter Your E-mail" />
+            </div>
+            <div>
+              <button type="submit" class="log-in-btn">Send mail</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

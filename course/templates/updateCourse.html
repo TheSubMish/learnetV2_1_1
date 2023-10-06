@@ -1,0 +1,62 @@
+{% extends 'teachcourseBase.html' %}
+{% block title %}
+  Update Course - Learnet
+{% endblock %}
+{% load i18n %}
+{% block content %}
+  <div class="grid">
+    <div class="dash-content" id="addCourse">
+      <div class="margin">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="course">
+            <!-- course name -->
+            {{ form.courseTitle }}
+            {% if error.courseTitle %}
+              <p class="error">{{ error.courseTitle }}</p>
+            {% endif %}
+            <!-- course category -->
+            {{ form.category.label_tag }}
+            {{ form.category }}
+            {% if error.category %}
+              <p class="error">{{ error.category }}</p>
+            {% endif %}
+            <!-- course description -->
+            {{ form.courseDescrip }}
+            {% if error.courseDescrip %}
+              <p class="error">{{ error.courseDescrip }}</p>
+            {% endif %}
+            <!-- course image -->
+            {{ form.courseImage.label_tag }}
+            {{ form.courseImage }}
+            {% if error.courseImage %}
+              <p class="error">{{ error.courseImage }}</p>
+            {% endif %}
+          </div>
+          <div class="course-nav">
+            <button class="sub-btn" type="submit">Next</button>
+            <p class="delete" onclick="showDelete(this)">Delete</p>
+          </div>
+        </form>
+        <div class="glass-card">
+          <div class="glass-card-container">
+            <div class="glass-card-title">
+              <h1>Are you sure you want to delete?</h1>
+            </div>
+            <div class="glass-card-links">
+              <div>
+                <input type="button" value="Cancel" onclick="hideDelete()" />
+              </div>
+              <div>
+                <form action="/teacher/delete/{{ form.courseTitle.value|slugify }}/course/" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="Delete" class="glass-delete" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

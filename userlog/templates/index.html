@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Home - Learnet</title>
+</head>
+<nav>
+    <div class="nav-title">
+        <a href="{% url 'home' %}">Learnet</a>
+    </div>
+    <div class="nav-links">
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url "many_course" %}" class="nav-link">Courses</a></li>
+            <li><a href="{% url "student_contact" %}" class="nav-link">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li class="profile-img">
+                <img src="{% static 'img/profile.jpg' %}" alt="Profile Image">
+                <ul class="profile-links">
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="login"><a href="{% url 'logout' %}">Log-Out</a></li>
+                </ul>
+            </li>
+            {% else %}
+                <li class="login"><a href="{% url 'login' %}" class="nav-link">Log-In</a></li>
+            {% endif %}
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<body>
+<div class="container">
+    <div class="homeContainer">
+        <div class="home-title">
+            <h1>Learn, Unlearn And Relearn</h1>
+            <a href="#">Contact Us</a>
+        </div>
+        <div>
+            <img src="{% static 'img/man-with-laptop-studying-or-working-concept-removebg.svg' %}"
+                alt="man-with-laptop-studying" class="home-img">
+        </div>
+    </div>
+    <div class="course-container">
+        <div class="courses">
+            <div class="course">
+                <div>
+                    <img src="{% static 'img/computer.png' %}" alt="Computer course">
+                </div>
+                <div>
+                    <h1>Course <span>1</span></h1>
+                    <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                    <a href="#" class="enroll">Enroll</a>
+                </div>
+            </div>
+            <div class="course">
+                <div>
+                    <img src="{% static 'img/chemistry.png' %}" alt="Computer course">
+                </div>
+                <div>
+                    <h1>Course <span>2</span></h1>
+                    <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                    <a href="#" class="enroll">Enroll</a>
+                </div>
+            </div>
+            <div class="course">
+                <div>
+                    <img src="{% static 'img/science-book.png' %}" alt="Computer course">
+                </div>
+                <div>
+                    <h1>Course <span>3</span></h1>
+                    <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                    <a href="#" class="enroll">Enroll</a>
+                </div>
+            </div>
+            <div class="course">
+                <div>
+                    <img src="{% static 'img/pngtree-book-graphic-design-template-vector-.png' %}"
+                        alt="Computer course">
+                </div>
+                <div>
+                    <h1>Course <span>4</span></h1>
+                    <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                    <a href="#" class="enroll">Enroll</a>
+                </div>
+            </div>
+        </div>
+        <div class="more-course">
+            <a href="#">View More</a>
+        </div>
+    </div>
+    <div class="about-container">
+        <div>
+            <h1>About us</h1>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea incidunt, consequatur ut dolorem beatae quo eos
+            provident nulla possimus consequuntur laborum voluptatem consectetur nesciunt quidem numquam vel cumque
+            error nemo</p>
+    </div>
+</div>
+</body>
+<footer>
+    <div class="img">
+        <img src="{% static 'img/logo.png' %}" alt="Learnet Company Logo">
+    </div>
+    <div class="foot">
+        <div class="footer-title">
+            <h3>Social link:</h3>
+        </div>
+        <div>
+            <div>
+                <img src="{% static 'img/fb.png' %}" alt="Learnet Facebook">
+                <a href="#">Facebook</a>
+            </div>
+            <div>
+                <img src="{% static 'img/yt.png' %}" alt="Learnet YouTube">
+                <a href="#">YouTube</a>
+            </div>
+            <div>
+                <img src="{% static 'img/twitter.png' %}" alt="Learnet Twitter">
+                <a href="#">Twitter</a>
+            </div>
+            <div>
+                <img src="{% static 'img/email.png' %}" alt="Learnet Twitter">
+                <a href="#">E-mail</a>
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <div class="footer-title">
+            <h3>Courses:</h3>
+        </div>
+        <div>
+            <div>
+                <img src="{% static 'img/book1.png' %}" alt="Learnet Facebook">
+                <a href="#">Course <span>1</span></a>
+            </div>
+            <div>
+                <img src="{% static 'img/book2.png' %}" alt="Learnet YouTube">
+                <a href="#">Course <span>2</span></a>
+            </div>
+            <div>
+                <img src="{% static 'img/book3.png' %}" alt="Learnet Twitter">
+                <a href="#">Course <span>3</span></a>
+            </div>
+            <div>
+                <img src="{% static 'img/book4.png' %}" alt="Learnet Twitter">
+                <a href="#">Course <span>4</span></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</html>

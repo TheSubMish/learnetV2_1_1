@@ -1,0 +1,85 @@
+{% extends 'teachcourseBase.html' %}
+{% block title %}
+  Update Test - Learnet
+{% endblock %}
+{% block content %}
+  <div class="grid-2">
+    <div class="dash-content" id="dashboard">
+      <div class="margin">
+        <div class="chapter-head">
+          <h1>Update Test</h1>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="testQuestions" method="post">
+            <div>
+              {{ form.course }}
+              {% if error.course %}
+                <p class="error">{{ error.course }}</p>
+              {% endif %}
+              {{ form.title }}
+              {% if error.title %}
+                <p class="error">{{ error.title }}</p>
+              {% endif %}
+            </div>
+            <div class="test">
+              <!-- question -->
+              {{ form.question }}
+              {% if error.question %}
+                <p class="error">{{ error.question }}</p>
+              {% endif %}
+              <!-- option1 -->
+              {{ form.option1 }}
+              {% if error.option1 %}
+                <p class="error">{{ error.option1 }}</p>
+              {% endif %}
+              <!-- option2 -->
+              {{ form.option2 }}
+              {% if error.option2 %}
+                <p class="error">{{ error.option2 }}</p>
+              {% endif %}
+              <!-- option3 -->
+              {{ form.option3 }}
+              {% if error.option3 %}
+                <p class="error">{{ error.option3 }}</p>
+              {% endif %}
+              <!-- option4 -->
+              {{ form.option4 }}
+              {% if error.option4 %}
+                <p class="error">{{ error.option4 }}</p>
+              {% endif %}
+              <!-- coreect answer -->
+              {{ form.corAns }}
+              {% if error.corAns %}
+                <p class="error">{{ error.corAns }}</p>
+              {% endif %}
+            </div>
+          </div>
+          <div class="course-nav">
+            <button type="submit" name="add_more" value="True" class="addChapter">Next Question</button>
+            <p class="delete" onclick="showDelete(this)">Delete</p>
+            <button type="submit" name="publish" value="True" class="sub-btn">Publish</button>
+          </div>
+        </form>
+        <div class="glass-card">
+          <div class="glass-card-container">
+            <div class="glass-card-title">
+              <h1>Are you sure you want to delete?</h1>
+            </div>
+            <div class="glass-card-links">
+              <div>
+                <input type="button" value="Cancel" onclick="hideDelete()" />
+              </div>
+              <div>
+                <form action="/teacher/delete/{{ course.slug }}/test/{{test.id}}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="Delete" class="glass-delete" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

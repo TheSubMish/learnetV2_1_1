@@ -1,0 +1,46 @@
+{% extends 'teachcourseBase.html' %}
+{% block title %}
+  Add Chapter - Learnet
+{% endblock %}
+{% block content %}
+  <div class="grid">
+    <div class="dash-content" id="addCourse">
+      <div class="margin">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="chapter">
+            <div class="chapter-head">
+              <h1>Add Chapter</h1>
+            </div>
+            <div class="chapter-body">
+              {% if update.update %}
+                <input type="text" name="course" value="{{ update.courseName }}" placeholder="Course Name" />
+              {% else %}
+                {{ form.course }}
+              {% endif %}
+              {% if error.course %}
+                <p class="error">{{ error.course }}</p>
+              {% endif %}
+
+              <!-- chapter name -->
+              {{ form.chapterName }}
+              {% if error.chapterName %}
+                <p class="error">{{ error.chapterName }}</p>
+              {% endif %}
+
+              <!-- chapter content -->
+              {{ form.chapterBody }}
+              {% if error.chapterBody %}
+                <p class="error">{{ error.chapterBody }}</p>
+              {% endif %}
+            </div>
+          </div>
+          <div>
+            <button type="submit" name="add_more" value="True" class="addChapter">Add More</button>
+            <button type="submit" name="next" value="True" class="sub-btn">Next</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

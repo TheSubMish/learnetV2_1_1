@@ -1,0 +1,40 @@
+{% extends 'teachcourseBase.html' %}
+{% block title %}Add Course - Learnet{% endblock title %}
+{% block content %}
+<div class="grid">
+    <div class="dash-content" id="addCourse">
+        <div class="margin">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="course">
+                    <!-- course name -->
+                    {{form.courseTitle}}
+                    {% if error.courseTitle %}
+                    <p class="error">{{error.courseTitle}}</p>
+                    {% endif %}
+                    <!-- course category -->
+                    {{form.category.label_tag}}
+                    {{form.category}}
+                    {% if error.category %}
+                        <p class="error">{{error.category}}</p>
+                    {% endif %}
+                    <!-- course description  -->
+                    {{form.courseDescrip}}
+                    {% if error.courseDescrip %}
+                        <p class="error">{{error.courseDescrip}}</p>
+                    {% endif %}
+                    <!-- course image -->
+                    {{form.courseImage.label_tag}}
+                    {{form.courseImage}}
+                    {% if error.courseImage %}
+                        <p class="error">{{error.courseImage}}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <button class="sub-btn" type="submit">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

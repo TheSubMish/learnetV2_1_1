@@ -1,0 +1,143 @@
+h1,
+h2 {
+    text-align: center;
+}
+
+h2 {
+    font-size: 15px;
+}
+
+.container-content .std-courses .course-head .no-course {
+    margin: 20px 0;
+}
+
+.container-content .std-courses .course-head .no-course h2 .enroll {
+    color: #b27fff;
+    text-decoration: underline;
+}
+
+.user-information {
+    margin: 100px 0;
+}
+
+.personal-details-content,
+.personal-details .user-address,
+.personal-details .preference {
+    margin: 30px 0;
+}
+
+.personal-details-content .personal-head,
+.personal-details .user-address .address h1,
+.personal-details .user-edu h1 {
+    padding: 20px 0;
+}
+
+.std-courses .more-course {
+    text-align: center;
+}
+
+.std-courses .more-course {
+    color: #b27fff;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.personal-details-content .personal-body .details .profile-picture-field .profile-picture {
+    width: 200px;
+    height: 200px;
+    background-image: url(/img/profile.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 10px auto;
+}
+
+.personal-details-content .personal-body div .change-pass {
+    padding: 20px 0px;
+    font-size: 20px;
+    color: #b27fff;
+    cursor: pointer;
+}
+
+.personal-details .user-edu select {
+    padding: 10px 20px;
+    margin: 10px 0;
+    width: 100%;
+    font-size: 15px;
+    border: 2px solid #D0D9DB;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.5s ease-in;
+}
+
+.personal-details .preference .select-preference {
+    background-color: #f5fbfd;
+    box-shadow: 0px 5px 20px #D0D9DB;
+    padding: 20px;
+}
+
+.personal-details .preference .select-preference .categories {
+    width: 200px;
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.personal-details .preference .select-preference .categories input[type=checkbox] {
+    display: none;
+}
+
+.personal-details .preference .select-preference .categories p {
+    margin: 5px;
+    padding: 5px 10px;
+    width: max-content;
+    background-color: #bfa0ed;
+    border-radius: 10px;
+}
+
+.personal-details .preference .select-preference .categories p label {
+    color: white;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+.personal-details .update-details button{
+    padding: 10px 20px;
+    border: 1px solid #ff6161;
+    background-color: #ff6161;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.error p{
+    color: #ff6161;
+    padding: 10px 0;
+    text-align: center;
+}
+
+@media (min-width: 650px){
+    .personal-details .preference .select-preference .categories {
+        width: fit-content;
+    }
+}
+
+@media (min-width:900px) {
+    .user-information {
+        margin: 100px 100px;
+    }
+    
+    .personal-details-content .personal-body .details {
+        display: flex;
+    }
+
+    .personal-details-content .personal-body .details .profile-picture-field .profile-picture{
+        margin: 10px 0;
+    }
+}
+
+@media (min-width: 1000px) {
+    .user-information {
+        margin: 100px 200px;
+    }
+}

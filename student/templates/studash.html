@@ -1,0 +1,131 @@
+{% extends 'studentbase.html' %}
+{% load static %}
+{% block title %} Student - Dashboard {% endblock%}
+{% block content %}
+<div class="container">
+    <div class="container-content">
+        <div class="std-courses">
+            <div class="course-head">
+                <div>
+                    <h1>Your Courses</h1>
+                </div>
+                {% if cousre is None %}
+                <div class="no-course">
+                    <h2>You have not enrolled in any courses <a href="#" class="enroll">Click here </a>to enroll
+                    </h2>
+                </div>
+                {% else %}
+            </div>
+            <div class="courses">
+                <div class="course">
+                    <div>
+                        <img src="{% static '/img/computer.png' %}" alt="Computer course">
+                    </div>
+                    <div>
+                        <h1>Course <span>1</span></h1>
+                        <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                        <a href="#" class="enroll">Read Course</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <div>
+                        <img src="{% static '/img/computer.png' %}" alt="Computer course">
+                    </div>
+                    <div>
+                        <h1>Course <span>2</span></h1>
+                        <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                        <a href="#" class="enroll">Read Course</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <div>
+                        <img src="{% static '/img/computer.png' %}" alt="Computer course">
+                    </div>
+                    <div>
+                        <h1>Course <span>3</span></h1>
+                        <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                        <a href="#" class="enroll">Read Course</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <div>
+                        <img src="{% static '/img/computer.png' %}" alt="Computer course">
+                    </div>
+                    <div>
+                        <h1>Course <span>4</span></h1>
+                        <p>Lorem ipsum dolor sit, amet elit. Culpa, quas.</p>
+                        <a href="#" class="enroll">Read Course</a>
+                    </div>
+                </div>
+            </div>
+            <div class="more-course">
+                <a href="#">View More</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="user-information">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="personal-details">
+                    <div class="personal-details-content">
+                        <div class="personal-head">
+                            <h1>Personal Details</h1>
+                        </div>
+                        <div class="personal-body">
+                            <div class="details">
+                                <div class="profile-picture-field">
+                                    <img class="profile-picture" src="{{ pic.profilepic.url }}">
+                                    <input type="file" name="profilepic" accept="image/*" id="id_profilepic" value="{{ pic.profilepic.url }}">
+                                </div>
+                                <div>
+                                    <div class="std-name">
+                                        {{ userform.first_name }}
+                                        {{ userform.last_name }}
+                                    </div>
+                                    <div>
+                                        {{ userform.phone }}
+                                    </div>
+                                    {% if error %}
+                                    <div class="error">
+                                        <p>{{ error }}</p>
+                                    </div>
+                                    {% endif %}
+                                    <div>
+                                        <a href="#" class="change-pass">Change Password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-address">
+                        <div class="address">
+                            <h1>Address</h1>
+                            {{ userform.city }}
+                            {{ userform.district }}
+                            {{ userform.state }}
+                        </div>
+                    </div>
+                    <div class="user-edu">
+                        <h1>Education</h1>
+                        {{ userform.edubackground }}
+                    </div>
+                    <div class="preference">
+                        <div class="select-preference">
+                            <div class="user-pref">
+                                <p>Choose Skill You Want To Learn:</p>
+                            </div>
+                            <div class="categories">
+                                {{prefform.label}}
+                                {{ prefform.as_p }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-details">
+                        <button type="submit">Update Details</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

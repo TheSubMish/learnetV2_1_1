@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Sign-Up - Learnet</title>
+</head>
+
+<body>
+    <div class="log-container">
+        <div class="log-img">
+            <img src="{% static 'img/logo.png' %}" alt="Learnet Company Logo">
+        </div>
+        <div class="log sign">
+            <div>
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="name-pass">
+                            <!-- for first name -->
+                            {{form.first_name}}
+                            <!-- for last name -->
+                            {{form.last_name}}
+                        </div>
+                        <!-- first name error -->
+                        {% if error.first_name %}
+                        <div class="error">
+                            <p>{{ error.first_name }}</p>
+                        </div>
+                        {% endif %}
+
+                        <!-- last name error -->
+                        {% if error.last_name %}
+                        <div class="error">
+                            <p>{{ error.last_name }}</p>
+                        </div>
+                        {% endif %}
+
+                        <!-- for username -->
+                        <div>
+                            {{form.username}}
+                        </div>
+                        {% if error.username %}
+                        <div class="error">
+                            <p>{{ error.username }}</p>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <!-- for email -->
+                            {{form.email}}
+                        </div>
+                        {% if error.email %}
+                        <div class="error">
+                            <p>{{ error.email }}</p>
+                        </div>
+                        {% endif %}
+                        <!-- for password -->
+                        <div class="name-pass">
+                            {{form.password1}}
+                            <!-- for confirm password -->
+                            {{form.password2}}
+                        </div>
+                        <!-- error for password -->
+                        {% if error.password1 %}
+                        <div class="error">
+                            <p>{{ error.password1 }}</p>
+                        </div>
+                        {% endif %}
+                        <!-- erro for confirm password -->
+                        {% if error.password2 %}
+                        <div class="error">
+                            <p>{{ error.password2 }}</p>
+                        </div>
+                        {% endif %}
+                        <div class="role">
+                            {{form.role}}
+                            <label for="role">{{form.role.label}}</label>
+                        </div>
+                        <div>
+                            <button type="submit" class="sign-up-btn">Sign-Up</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="log-contain">
+                    <a href="{% url 'login' %}" class="log-in-btn">Log-In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

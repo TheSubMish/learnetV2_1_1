@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Log-In - Learnet</title>
+</head>
+
+<body>
+    <div class="log-container">
+        <div class="log-img">
+            <img src="{% static 'img/logo.png' %}" alt="Learnet Company Logo">
+        </div>
+        <div class="log">
+            <div>
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div>
+                            {{form.username}}
+                        </div>
+                        <div>
+                            {{form.password}}
+                        </div>
+                        {% if error %}
+                        <div class="error">
+                            <p>{{ error }}</p>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <button type="submit" class="log-in-btn">Log-In</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="forget">
+                    <a href="#">Forget Password?</a>
+                </div>
+                <div class="sign-contain">
+                    <a href="{% url 'signup' %}" class="sign">Sign-Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

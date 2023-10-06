@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  All Courses - Learnet
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="many-course-container">
+      <div class="many-course-contains">
+        {% if courses %}
+          {% for course in courses %}
+            <div class="many-course">
+              <div class="many-course-img">
+                <img src="{{ course.courseImage.url }}" alt="{{ course.courseTitle }}" />
+              </div>
+              <div class="many-course-body">
+                <div>
+                  <h1>{{ course.courseTitle }}</h1>
+                  {% if course.courseDescrip|length > 100 %}
+                    <p class="course-descrip">{{ course.courseDescrip|slice:':100' }}...</p>
+                  {% else %}
+                    <p class="course-descrip">{{ course.courseDescrip }}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="many-course-enroll">
+                <a href="/course/{{ course.slug }}" class="enroll">Enroll</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="no-course">
+            <h1>There are no courses</h1>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

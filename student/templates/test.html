@@ -1,0 +1,90 @@
+{% extends 'studentbase.html' %}
+{% load static %}
+{% block title %}
+  Test - learnet
+{% endblock %}
+{% block content %}
+  <div class="read-course-container">
+    <div class="test-page">
+      <div class="chapter-list-container">
+        <div class="chapter-list">
+          <ul class="chap-menu">
+            {% if chapters %}
+              {% for chapter in chapters %}
+                <li>
+                  <a href="{% url 'read_course' chapter.course.slug chapter.id chapter.chapterName %}" class="nav-link">{{ chapter.chapterName }}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+            <p>Tests &#8595</p>
+            {% if tests %}
+              {% for test in tests %}
+                <li>
+                  <a href="{% url 'give_test' course.slug test.max_id test.title %}" class="nav-link">{{ test.title }}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <div class="give-test">
+        <div class="read-chapter-title">
+          {% if tests %}
+            {% for test in current_test %}
+              {% if forloop.counter == 1 %}
+                <h1>{{ test.title }}</h1>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="read-chapter-body">
+          <div class="questions">
+            <div>
+              <form method="post">
+                {% csrf_token %}
+                {% if tests %}
+                  {% for test in current_test %}
+                    <div class="question">
+                      <div class="queNo">
+                        <h1>Question {{ forloop.counter }}</h1>
+                      </div>
+                      <div class="queBody">
+                        <div class="mainQue">
+                          <h3>{{ test.question }}</h3>
+                        </div>
+                        <div class="options">
+                          <input type="radio" name="option{{ forloop.counter }}" id="option1" value="{{ test.option1 }}" />
+                          <label for="option1">{{ test.option1 }}</label>
+                        </div>
+                        <div class="options">
+                          <input type="radio" name="option{{ forloop.counter }}" id="option2" value="{{ test.option2 }}" />
+                          <label for="option2">{{ test.option2 }}</label>
+                        </div>
+                        <div class="options">
+                          <input type="radio" name="option{{ forloop.counter }}" id="option3" value="{{ test.option3 }}" />
+                          <label for="option3">{{ test.option3 }}</label>
+                        </div>
+                        <div class="options">
+                          <input type="radio" name="option{{ forloop.counter }}" id="option4" value="{{ test.option4 }}" />
+                          <label for="option4">{{ test.option4 }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                <div class="queFoot">
+                  <div>
+                    <h1 class="score">Total Mark: <span>{{ score }}</span></h1>
+                  </div>
+                  <div>
+                    <button type="submit" name="publish" value="True" class="sub-btn">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

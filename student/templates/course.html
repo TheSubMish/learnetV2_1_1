@@ -1,0 +1,34 @@
+{% extends "studentbase.html" %}
+{% load static %}
+{% block title %}Course - learnet{% endblock title %}
+{% block content %}
+<div class="read-course-container">
+    <div class="read-course">
+        <div class="chapter-list-container">
+            <div class="chapter-list">
+                <ul class="chap-menu">
+                    {% if chapters %}
+                        {% for chapter in chapters %}
+                            <li><a href="{% url 'read_course' chapter.course.slug chapter.id chapter.chapterName%}" class="nav-link">{{ chapter.chapterName }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                    <p>Tests &#8595</p>
+                    {% if tests %}
+                        {% for test in tests %}
+                            <li><a href="{% url  'give_test' course.slug test.max_id test.title %}" class="nav-link">{{ test.title }}</a></li>
+                        {% endfor %}
+                    {% endif %} 
+                </ul>
+            </div>
+        </div>
+        <div class="read-chapter">
+            <div class="read-chapter-title">
+                <h1>{{ chapter.chapterName }}</h1>
+            </div>
+            <div class="read-chapter-body">         
+                <pre>{{ chapter.chapterBody }}</pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

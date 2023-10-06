@@ -1,0 +1,34 @@
+{% extends 'teachbase.html' %}
+{% load static %}
+{% block title %}
+  Contact - Learnet
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="contact-page">
+      <div>
+        <h1>Let's have a talk</h1>
+      </div>
+      <div>
+        <form method="post">
+          {% csrf_token %}
+          <div>{{ form.username }}</div>
+          {% if error.username %}
+            <p class="error">{{ error.username }}</p>
+          {% endif %}
+          <div>{{ form.email }}</div>
+          {% if error.email %}
+            <p class="error">{{ error.email }}</p>
+          {% endif %}
+          <div>{{ form.message }}</div>
+          {% if error.message %}
+            <p class="error">{{ error.message }}</p>
+          {% endif %}
+          <div>
+            <button type="submit" class="sub-btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

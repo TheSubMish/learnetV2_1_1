@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{course.courseTitle}}
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="single-course">
+      <div class="single-course-heading">
+        <div class="single-course-title">
+          <div>
+            <img src="{{ course.courseImage.url }}" alt="{{ course.courseTitle }}" />
+          </div>
+          <div>
+            <h1>{{ course.courseTitle }}</h1>
+          </div>
+        </div>
+        <div>
+          <a href="{% url 'read_course' course.slug chapter.pk chapter.chapterName %}" class="enroll">Enroll Now</a>
+        </div>
+      </div>
+      <div class="course-description">
+        <div class="descrip">
+          <div>
+            <h1>Course Description:</h1>
+          </div>
+          <div>
+            <pre>{{ course.courseDescrip }}</pre>
+          </div>
+        </div>
+        <div class="author">
+          <div>
+            <h3>Author:</h3>
+            <p>{{ course.teacher }}</p>
+          </div>
+          <div>
+            <a href="{% url 'read_course' course.slug chapter.pk chapter.chapterName %}" class="enroll">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

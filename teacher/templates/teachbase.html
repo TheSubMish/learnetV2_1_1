@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static '/css/teacher.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}" />
+    <link rel="shortcut icon" href="{% static '/img/favicon.png' %}" type="image/png" />
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <nav>
+    <div class="nav-title">
+      <a href="{% url 'home' %}">Learnet</a>
+    </div>
+    <div class="nav-links">
+      <ul class="nav-menu">
+        <li>
+          <a href="{% url 'dashboard' %}" class="nav-link">Dashboard</a>
+        </li>
+        <li>
+          <a href="{% url 'addcourse' %}" class="nav-link">Add Course</a>
+        </li>
+        <li>
+          <a href="{% url "teacher_contact" %}" class="nav-link">Contact</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="profile-img">
+            <img src="{% static 'img/profile.jpg' %}" alt="Profile Image" />
+            <ul class="profile-links">
+              <li>
+                <a href="{% url 'teacher_dashboard' %}">Dashboard</a>
+              </li>
+              <li class="login">
+                <a href="{% url 'logout' %}">Log-Out</a>
+              </li>
+            </ul>
+          </li>
+        {% else %}
+          <li class="login">
+            <a href="{% url 'login' %}" class="nav-link">Log-In</a>
+          </li>
+        {% endif %}
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+  <script src="{% static '/js/script.js' %}"></script>
+</html>

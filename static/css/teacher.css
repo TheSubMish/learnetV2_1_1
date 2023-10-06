@@ -1,0 +1,620 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #545A5C;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f8ff;
+    font-family: 'Playfair Display', serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+pre {
+    white-space: break-spaces;
+    font-size: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    min-height: 70px;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #f5fbfd;
+    box-shadow: 0px 5px 20px #cfcfcf;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.nav-title a {
+    font-size: 30px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.nav-bar-items {
+    display: none;
+}
+
+.hamburger {
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #545A5C;
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+#courseImage-clear_id {
+    display: none;
+}
+
+label[for="courseImage-clear_id"] {
+    display: none;
+}
+
+.nav-menu,
+.chap-menu {
+    position: fixed;
+    left: -100%;
+    top: 80px;
+    height: 100vh;
+    gap: 0;
+    flex-direction: column;
+    background-color: #f5fbfd;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.nav-menu li,
+.chap-menu li {
+    margin: 16px 0;
+    width: 100%;
+    font-size: 20px;
+    padding: 20px;
+    transition: 0.7s ease;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.nav-menu li:hover,
+.chap-menu li:hover {
+    background-color: #D0D9DB;
+}
+
+.nav-menu.active,
+.chap-menu.active {
+    left: 0;
+}
+
+.nav-menu li a img {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+.nav-menu .profile-img .profile-links {
+    position: absolute;
+    top: 85px;
+    left: 30%;
+    background-color: #f5fbfd;
+    display: none;
+}
+
+.nav-menu .profile-img:hover .profile-links {
+    display: block;
+}
+
+.login a {
+    width: 100%;
+    color: #b27fff;
+    transition: 0.7s ease;
+}
+
+.login:hover a {
+    color: #5400d1 !important;
+}
+
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=email],
+select,
+textarea {
+    padding: 10px 20px;
+    margin: 10px 0;
+    width: 100%;
+    font-size: 15px;
+    border: 2px solid #D0D9DB;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.5s ease-in;
+}
+
+option {
+    padding: 10px 0;
+}
+
+label {
+    font-size: 20px;
+    padding: 10px 0;
+    text-transform: none;
+}
+
+.error {
+    color: #ff6161;
+    font-size: 15px;
+}
+
+textarea {
+    height: 300px;
+    font-size: 17px;
+}
+
+input:focus {
+    border: 3px solid black;
+}
+
+textarea:focus {
+    border: 3px solid black;
+}
+
+.nav-menu li img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+.nav-menu .profile-img:hover {
+    background-color: #f5fbfd;
+}
+
+.nav-menu .profile-img {
+    position: relative;
+}
+
+.nav-menu .profile-img .profile-links {
+    position: absolute;
+    top: 85px;
+    left: 30%;
+    background-color: #f5fbfd;
+    display: none;
+}
+
+.nav-menu .profile-img:hover .profile-links {
+    display: block;
+}
+
+.sub-btn {
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    background-color: #a468ff;
+    border: 1px solid #a468ff;
+    border-radius: 10px;
+    transition: 0.7s ease;
+}
+
+.back {
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    background-color: rgb(255, 94, 94);
+    border: 1px solid rgb(255, 94, 94);
+    border-radius: 10px;
+    transition: 0.7s ease;
+}
+
+.addChapter,
+.addQue {
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    background-color: #147870;
+    border: 1px solid #147870;
+    border-radius: 10px;
+    transition: 0.7s ease;
+}
+
+.container {
+    margin: 120px 0 50px 0;
+    padding: 0px 20px 50px 20px;
+}
+
+.course-card {
+    margin: 50px 0;
+}
+
+.course-card {
+    background-color: #f5fbfd;
+    box-shadow: 0px 5px 20px #cfcfcf;
+    padding: 20px;
+    margin: 30px auto;
+    text-align: center;
+    width: 200px;
+    height: 250px;
+}
+
+.course-card div img {
+    width: 150px;
+    height: 100px;
+}
+
+.course-card .course-link {
+    margin: 35px 0;
+}
+
+.course-card a {
+    border-radius: 10px;
+    padding: 10px 25px;
+    background-color: #147870;
+    color: #f5fbfd;
+    font-size: 20px;
+}
+
+.course-container .no-courses {
+    text-align: center;
+    margin: 50px auto;
+    font-size: 20px;
+}
+
+.course-nav {
+    width: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.course-nav .delete {
+    border-radius: 10px;
+    margin: 0 20px;
+    padding: 10px 7px;
+    background-color: #ff6161;
+    color: #f5fbfd;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.glass-card {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+.glass-card .glass-card-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f5fbfd;
+    padding: 20px 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.glass-card .glass-card-container .glass-card-title {
+    margin-bottom: 30px;
+}
+
+.glass-card p,
+.glass-card a,
+.glass-card input[type=button] {
+    font-size: 20px;
+}
+
+.glass-card .glass-card-links div {
+    margin-bottom: 15px;
+}
+
+.glass-card .glass-card-links div form .glass-delete{
+    color: #f5fbfd;
+    background-color: #ff6161;
+    padding: 13px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.glass-card input[type=button] {
+    color: #f5fbfd;
+    background-color: #b27fff;
+    padding: 10px;
+    border: 1px solid #b27fff;
+    border-radius: 5px;
+}
+
+.course-head {
+    text-align: center;
+}
+
+.course-head h1 {
+    font-size: 40px;
+}
+
+.course-head .no-course {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.course-head .no-course h1 {
+    font-size: 25px;
+}
+
+.course h1 {
+    font-size: 25px;
+    color: rgb(255, 94, 94);
+}
+
+.course p {
+    font-size: 15px;
+}
+
+.course a {
+    color: #b27fff;
+    text-decoration: underline;
+}
+
+.course:hover .enroll {
+    font-size: 20px;
+}
+
+.dash-content .margin .course {
+    margin-bottom: 30px;
+}
+
+@media (min-width:425px) and (max-width: 550px) {
+    nav {
+        padding: 0 70px;
+    }
+
+    .container {
+        padding: 0px 70px 50px 70px;
+    }
+}
+
+@media(min-width: 550px) and (max-width: 650px) {
+    nav {
+        padding: 0 70px;
+    }
+
+    .container {
+        padding: 0px 170px 50px 170px;
+    }
+
+    .glass-card-links {
+        display: flex;
+        justify-content: center;
+    }
+
+    .glass-card-links div {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .glass-card-container {
+        padding: 50px;
+    }
+}
+
+@media(min-width: 650px) and (max-width: 900px) {
+    nav {
+        padding: 0 70px;
+    }
+
+    .container {
+        padding: 0px 70px 50px 70px;
+    }
+
+    .sub-btn:hover {
+        background-color: #f8f8ff;
+        color: #a468ff;
+    }
+
+    .back:hover {
+        background-color: #f8f8ff;
+        color: rgb(255, 94, 94);
+    }
+
+    .addChapter:hover,
+    .addQue:hover {
+        background-color: #f8f8ff;
+        color: #147870;
+    }
+
+    .course-container {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .course-container .no-courses {
+        position: absolute;
+        margin: 50px 0;
+        left: 47%;
+    }
+
+    .glass-card-container {
+        padding: 50px;
+    }
+
+    .glass-card-links {
+        display: flex;
+        justify-content: center;
+    }
+
+    .glass-card-links div {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+}
+
+@media (min-width:900px) {
+    pre {
+        font-size: 17px;
+    }
+
+    nav {
+        padding: 0 70px;
+    }
+
+    .nav-bar-items {
+        display: block;
+    }
+
+    .nav-menu {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        height: 80px;
+        gap: 10px;
+        left: 0;
+        top: 0;
+    }
+
+    .nav-menu li {
+        margin: 0;
+        width: auto;
+        font-size: 18px;
+        padding: 20px;
+        transition: 0.7s ease;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .nav-menu .profile-img .profile-links {
+        left: -40%;
+        box-shadow: 0px 5px 20px #cfcfcf;
+    }
+
+    .container {
+        padding: 0px 70px 50px 70px;
+    }
+
+    .sub-btn:hover {
+        background-color: #f8f8ff;
+        color: #a468ff;
+    }
+
+    .back:hover {
+        background-color: #f8f8ff;
+        color: rgb(255, 94, 94);
+    }
+
+    .addChapter:hover,
+    .addQue:hover {
+        background-color: #f8f8ff;
+        color: #147870;
+    }
+
+    .course-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
+
+    .inner-card {
+        margin: 0 70px;
+        padding: 30px 40px;
+    }
+
+    .inner-card div {
+        margin: 30px 0;
+    }
+
+    .course-container .no-courses {
+        position: absolute;
+        margin: 50px 0;
+        left: 47%;
+    }
+
+    .glass-card-container {
+        padding: 50px;
+    }
+
+    .glass-card-links {
+        display: flex;
+        justify-content: center;
+    }
+
+    .glass-card-links div {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+}
+
+@media (min-width:1250px) {
+    nav {
+        padding: 0 200px;
+    }
+
+    .nav-menu {
+        gap: 30px;
+    }
+
+    .nav-menu li {
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 0px 200px 50px 200px;
+        margin-bottom: 100px;
+    }
+
+    .contact-page {
+        padding: 0 100px;
+        margin: 0 100px;
+    }
+
+    .contact-page div {
+        margin: 10px 0;
+    }
+
+    .contact-page div h1 {
+        font-size: 30px;
+    }
+}
