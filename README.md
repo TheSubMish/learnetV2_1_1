@@ -1,1 +1,1 @@
-A Django project for complete beginers
+A Django project for complete beginners
