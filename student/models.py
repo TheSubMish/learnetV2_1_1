@@ -43,3 +43,15 @@ class StudentMark(models.Model):
 
     def __str__(self):
         return self.test.title
+    
+class CoursePayment(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    amount = models.IntegerField()
+
+class Cart(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.student.user.username

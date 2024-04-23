@@ -9,5 +9,6 @@ urlpatterns = [
     path('course/<slug:slug>/',views.SingleCourse.as_view(),name='single_course'),
     path('read/course/<slug:slug>/chapter/<int:pk>/<str:chapterName>/',views.ReadCourse.as_view(),name='read_course'),
     path('give/course/<slug:slug>/test/<int:pk>/<str:title>/',views.GiveTest.as_view(),name='give_test'),
-    path('student/contact/',views.StudentContact.as_view(),name='student_contact')
+    path('student/contact/',views.StudentContact.as_view(),name='student_contact'),
+    path('verify/payment/',views.VerifyPaymentView.as_view(),name='initiate_payment')
 ]

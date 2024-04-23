@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student,UserPreference,Enroll,StudentMark
+from .models import Student,UserPreference,Enroll,StudentMark,CoursePayment
 # Register your models here.
 class StudentAdmin(admin.ModelAdmin):
     list_display = ['user']
@@ -16,3 +16,7 @@ admin.site.register(Enroll,EnrollAdmin)
 class StudentMarkAdmin(admin.ModelAdmin):
     list_display=['student','test']
 admin.site.register(StudentMark,StudentMarkAdmin)
+
+class CoursePayementAdmin(admin.ModelAdmin):
+    list_display=['student','course']
+admin.site.register(CoursePayment,CoursePayementAdmin)

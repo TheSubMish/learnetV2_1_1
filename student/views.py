@@ -6,13 +6,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Max
 import json
 from django.core.mail import send_mail
-
+import requests
+import json
 from .forms import UserInformationForm,UserPreferenceForm
-from .models import Student,UserPreference,Enroll,StudentMark
+from .models import Student,UserPreference,Enroll,StudentMark,CoursePayment,Cart
 from userlog.models import CustomUser
 from userlog.forms import ContactForm
 from course.models import Course,Chapter,Test
 from .get_or_create import get_user_information,get_user_preferences,save_user_name,update_user_information,create_pref,update_pref
+from django.contrib.auth.decorators import login_required
+from rest_framework import generics
+from rest_framework.response import Response
+from .serializers import VerifyPaymentSerializer
 
 # Create your views here.
 class StudentDashboard(LoginRequiredMixin,CreateView):
@@ -81,6 +86,12 @@ class SingleCourse(DetailView):
         context = super().get_context_data(**kwargs)
         course = Course.objects.get(slug=self.kwargs['slug'])
         context['course'] = course
+        student = Student.objects.get(user=self.request.user)
+        try:
+            course_payement = CoursePayment.objects.get(course=course, student=student)
+            context['paid'] = True
+        except CoursePayment.DoesNotExist:
+            context['paid'] = False
         context['chapter'] = Chapter.objects.filter(course=course).first()
         return context
 
@@ -181,3 +192,39 @@ class StudentContact(FormView):
         recipient_email = 'sumi_csit2077@lict.edu.np'
         send_mail(subject,message,from_email,[recipient_email])
         return redirect('student_contact')
+    
+
+class VerifyPaymentView(generics.GenericAPIView):
+    serializer_class = VerifyPaymentSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        res = serializer.validated_data['response']
+
+        return Response(res)
+    
+class AddToCartView(LoginRequiredMixin,CreateView):
+    login_url = '/login/'
+    template_name = 'singleCourse.html'
+    model = Cart
+    
+class StudentCartView(LoginRequiredMixin,ListView):
+    login_url = '/login/'
+    template_name = 'cart.html'
+    model = Cart
+    context_object_name = 'cart'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            student = Student.objects.get(user=request.user)
+        except:
+            return redirect(self.login_url)
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = Student.objects.get(user=self.request.user)
+        context['cart'] = Cart.objects.filter(student=student)
+        return context
