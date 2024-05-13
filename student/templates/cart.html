@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Student Cart
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="many-course-container">
+      <div class="many-course-contains">
+        {% if cart_items %}
+          {% for cart_item in cart_items %}
+            <div class="many-course">
+              <div class="many-course-img">
+                <img src="{{ cart_item.course.courseImage.url }}" alt="{{ course.courseTitle }}" />
+              </div>
+              <div class="many-course-body">
+                <div>
+                  <h1>{{ cart_item.course.courseTitle }}</h1>
+                  {% if cart_item.course.courseDescrip|length > 100 %}
+                    <p class="course-descrip">{{ cart_item.course.courseDescrip|slice:':100' }}...</p>
+                  {% else %}
+                    <p class="course-descrip">{{ cart_item.course.courseDescrip }}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="many-course-enroll">
+                <form action="{% url 'delete_from_cart' cart_item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="sub-btn">Remove</button>
+                </form>
+                
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="no-course">
+            <h1>There are no courses</h1>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

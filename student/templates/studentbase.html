@@ -16,8 +16,9 @@
     <div class="nav-links">
         <ul class="nav-menu">
             <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-            <li><a href="{% url "many_course" %}" class="nav-link">Courses</a></li>
-            <li><a href="{% url "student_contact" %}" class="nav-link">Contact</a></li>
+            <li><a href="{% url 'many_course' %}" class="nav-link">Courses</a></li>
+            <li><a href="{% url 'student_contact' %}" class="nav-link">Contact</a></li>
+            <li><a href="{% url 'student_cart' %}" class="nav-link">Carts</a></li>
             {% if user.is_authenticated %}
             <li class="profile-img">
                 <img src="{% static 'img/profile.jpg' %}" alt="Profile Image">

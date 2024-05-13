@@ -22,6 +22,13 @@
           <button id="payment-button" class="enroll">Enroll Now</button>
           {% endif %}
         </div>
+        <div>
+          <form method="post" action="/cart/add/">
+            {% csrf_token %}
+            <input type="hidden" name="course_id" value="{{course.id}}" />
+            <input type="submit" value="Add to cart" class="sub-btn" />
+          </form>
+        </div>
       </div>
       <div class="course-description">
         <div class="descrip">

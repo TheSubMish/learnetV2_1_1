@@ -9,6 +9,8 @@ class VerifyPaymentSerializer(serializers.Serializer):
     def validate(self, attrs):
         token = attrs.get('token')
         amount = attrs.get('amount')
+        product_url = attrs.get('product_url')
+
 
         url = "http://127.0.0.1:8000/khalti/verifypayment/"
 
@@ -28,8 +30,10 @@ class VerifyPaymentSerializer(serializers.Serializer):
 
         user = self.context['request'].user
         student = Student.objects.get(user=user)
-        course = Course.objects.get(id=response.json()['details']['product_identity'])
+        # print(response.json())
+        # course = Course.objects.get(id=response.json()['details']['product_identity'])
 
-        course_payement = CoursePayment.objects.create(student=student, course=course,amount=amount)
-        attrs['course_payement'] = course_payement
+        # course_payement = CoursePayment.objects.create(student=student, course=course,amount=amount)
+        attrs['course_payement'] = product_url
+
         return attrs

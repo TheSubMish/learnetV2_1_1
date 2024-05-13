@@ -1,5 +1,6 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render,redirect
-from django.views.generic import CreateView,ListView,FormView
+from django.views.generic import CreateView,ListView,FormView,DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -207,8 +208,23 @@ class VerifyPaymentView(generics.GenericAPIView):
     
 class AddToCartView(LoginRequiredMixin,CreateView):
     login_url = '/login/'
-    template_name = 'singleCourse.html'
+    template_name = 'cart.html'
     model = Cart
+
+    def post(self, request):
+        course_id = request.POST.get('course_id')
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return redirect('many_course')
+        
+        try:
+            student = Student.objects.get(user=request.user)
+        except:
+            return redirect(self.login_url)
+        
+        cart = Cart.objects.create(course=course,student=student)
+        return redirect('student_cart')
     
 class StudentCartView(LoginRequiredMixin,ListView):
     login_url = '/login/'
@@ -226,5 +242,17 @@ class StudentCartView(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         student = Student.objects.get(user=self.request.user)
-        context['cart'] = Cart.objects.filter(student=student)
+        context['cart_items'] = Cart.objects.filter(student=student)
         return context
+    
+class StudentCartDeleteVIew(LoginRequiredMixin,DeleteView):
+    login_url = '/login/'
+    model = Cart
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+    
+    def post(self,request, *args, **kwargs):
+        self.object = self.get_object() 
+        self.object.delete()
+        return redirect('student_cart')

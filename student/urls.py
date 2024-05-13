@@ -10,5 +10,8 @@ urlpatterns = [
     path('read/course/<slug:slug>/chapter/<int:pk>/<str:chapterName>/',views.ReadCourse.as_view(),name='read_course'),
     path('give/course/<slug:slug>/test/<int:pk>/<str:title>/',views.GiveTest.as_view(),name='give_test'),
     path('student/contact/',views.StudentContact.as_view(),name='student_contact'),
-    path('verify/payment/',views.VerifyPaymentView.as_view(),name='initiate_payment')
+    path('verify/payment/',views.VerifyPaymentView.as_view(),name='initiate_payment'),
+    path('cart/add/',views.AddToCartView.as_view(),name='add_to_cart'),
+    path('cart/',views.StudentCartView.as_view(),name='student_cart'),
+    path('cart/delete/<int:pk>',views.StudentCartDeleteVIew.as_view(),name='delete_from_cart')
 ]
