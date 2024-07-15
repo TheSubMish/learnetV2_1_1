@@ -31,9 +31,9 @@ class VerifyPaymentSerializer(serializers.Serializer):
         user = self.context['request'].user
         student = Student.objects.get(user=user)
         # print(response.json())
-        # course = Course.objects.get(id=response.json()['details']['product_identity'])
+        course = Course.objects.get(id=response.json()['details']['product_identity'])
 
-        # course_payement = CoursePayment.objects.create(student=student, course=course,amount=amount)
+        course_payement = CoursePayment.objects.create(student=student, course=course,amount=amount)
         attrs['course_payement'] = product_url
 
         return attrs
